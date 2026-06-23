@@ -1,0 +1,236 @@
+/* ===== CV Styles ===== */
+
+/* --- Print / Download Buttons --- */
+.cv-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cv-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: 1.5px solid #d0d5dd;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-family: 'Nunito', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #344054;
+  line-height: 1;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cv-btn:hover {
+  background: #f9fafb;
+  border-color: #98a2b3;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+  transform: translateY(-1px);
+}
+
+.cv-btn:active {
+  background: #f2f4f7;
+  border-color: #98a2b3;
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.cv-btn:focus-visible {
+  outline: 2px solid #3c78d8;
+  outline-offset: 2px;
+}
+
+/* Primary button variant */
+.cv-btn--primary {
+  background: #3c78d8;
+  border-color: #3c78d8;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(60, 120, 216, 0.3);
+}
+
+.cv-btn--primary:hover {
+  background: #3569c4;
+  border-color: #3569c4;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(60, 120, 216, 0.3), 0 1px 3px rgba(60, 120, 216, 0.15);
+}
+
+.cv-btn--primary:active {
+  background: #2e5eb0;
+  border-color: #2e5eb0;
+  box-shadow: 0 1px 2px rgba(60, 120, 216, 0.3);
+}
+
+.cv-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.cv-btn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 480px) {
+  .cv-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .cv-btn {
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
+
+/* --- Header --- */
+.cv-name {
+  font-size: 27px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.cv-subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* --- Contact --- */
+.cv-contact {
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.cv-contact-row {
+  display: flex;
+  gap: 4px;
+  line-height: 1.8;
+}
+
+.cv-contact-label {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cv-contact a {
+  color: #1155cc;
+  text-decoration: underline;
+}
+
+/* --- Section Titles --- */
+.cv-section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #3c78d8;
+  margin: 22px 0 10px;
+  letter-spacing: 0.5px;
+}
+
+/* --- Section Body --- */
+.cv-section-body {
+  margin-bottom: 6px;
+}
+
+.cv-section-body p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* --- Skills --- */
+.cv-skill-row {
+  display: flex;
+  gap: 4px;
+  line-height: 1.8;
+}
+
+.cv-skill-label {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cv-skill-value {
+  font-weight: 400;
+}
+
+/* --- Experience --- */
+.cv-exp-header {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 3px;
+}
+
+.cv-exp-date {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* --- Lists --- */
+.cv-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.cv-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 2px;
+}
+
+.cv-list li::before {
+  content: '●';
+  position: absolute;
+  left: 8px;
+  font-size: 12px;
+}
+
+/* --- Projects --- */
+.cv-proj-header {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+.cv-proj-sub {
+  font-size: 14px;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+/* --- Divider --- */
+.cv-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 16px 0;
+}
+
+/* --- Print Styles --- */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
