@@ -7,7 +7,8 @@ const App: React.FC = () => {
       <DownloadButtons />
 
       {/* Name & Title */}
-      <div className="cv-name">AGITA FIRSTAWAN</div>
+      <div id="printable-content">
+        <div className="cv-name">AGITA FIRSTAWAN</div>
       <div className="cv-subtitle">Senior Frontend / Mobile Engineer / Fullstack Engineer</div>
 
       {/* Contact */}
@@ -212,6 +213,7 @@ const App: React.FC = () => {
           <li>Implemented real-time data synchronization using WebSocket for improved responsiveness and user experience.</li>
           <li>Designed and developed chat and feed APIs, establishing scalable backend architecture, efficient data handling</li>
         </ul>
+      </div>
       </div>
     </>
   )

@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import html2pdf from 'html2pdf.js'
 
 /* Inline SVG icons — no external dependencies */
 const PrintIcon = () => (
@@ -25,16 +26,16 @@ const DownloadButtons: React.FC = () => {
   }, [])
 
   const handleDownload = useCallback(() => {
-    const html = document.documentElement.outerHTML
-    const blob = new Blob([html], { type: 'text/html' })
-    const url = URL.createObjectURL(blob)
-    const anchor = document.createElement('a')
-    anchor.href = url
-    anchor.download = 'Agita_Firstawan_CV.html'
-    document.body.appendChild(anchor)
-    anchor.click()
-    document.body.removeChild(anchor)
-    URL.revokeObjectURL(url)
+    const element = document.getElementById('printable-content')
+    if (!element) return
+    const opt = {
+      margin:       0.5,
+      filename:     'Agita_Firstawan_CV.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+    }
+    html2pdf().set(opt).from(element).save()
   }, [])
 
   return (
@@ -43,9 +44,9 @@ const DownloadButtons: React.FC = () => {
         <PrintIcon />
         <span className="cv-btn-label">Print / Save PDF</span>
       </button>
-      <button className="cv-btn" onClick={handleDownload} type="button" aria-label="Download HTML">
+      <button className="cv-btn" onClick={handleDownload} type="button" aria-label="Download as PDF">
         <DownloadIcon />
-        <span className="cv-btn-label">Download HTML</span>
+        <span className="cv-btn-label">Download PDF</span>
       </button>
     </div>
   )
