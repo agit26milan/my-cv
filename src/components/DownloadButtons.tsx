@@ -29,11 +29,12 @@ const DownloadButtons: React.FC = () => {
     const element = document.getElementById('printable-content')
     if (!element) return
     const opt = {
-      margin:       0.5,
+      // Letter + the PDF page margins (top, left, bottom, right in inches)
+      margin:       [0.55, 0.7, 0.55, 0.7] as [number, number, number, number],
       filename:     'Agita_Firstawan_CV.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
+      image:        { type: 'jpeg' as const, quality: 0.98 },
       html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
-      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+      jsPDF:        { unit: 'in' as const, format: 'letter' as const, orientation: 'portrait' as const },
     }
     html2pdf().set(opt).from(element).save()
   }, [])
