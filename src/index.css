@@ -1,4 +1,4 @@
-/* ===== Global Reset & Base ===== */
+/* ===== Global reset & base (CV typography lives in styles/cv.css) ===== */
 
 * {
   margin: 0;
@@ -7,16 +7,12 @@
 }
 
 body {
-  font-family: 'Nunito', Arial, sans-serif;
+  font-family: Helvetica, Arial, 'Liberation Sans', sans-serif;
   background: #fff;
-  color: #000;
-  line-height: 1.6;
-  padding: 36px;
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: #111111;
+  padding: 24px 0;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 @media print {

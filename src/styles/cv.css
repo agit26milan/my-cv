@@ -1,15 +1,170 @@
-/* ===== CV Styles ===== */
+/* ===== CV styles — metrics mirror the ATS PDF (reportlab, points) ===== *
+ * Source of truth: the PDF generator. Page = US Letter with 0.7in side /
+ * 0.55in top-bottom margins; every size below is the exact reportlab value.
+ * The page container is a flex column so adjacent margins add up instead of
+ * collapsing, which is how reportlab lays flowables out.
+ */
 
-/* --- Print / Download Buttons --- */
+:root {
+  --page-w: 8.5in;
+  --page-h: 11in;
+  /* reportlab: frame = margin + 6pt default Frame padding, hence 56.4 / 45.6pt */
+  --pad-x: 56.4pt;
+  --pad-y: 45.6pt;
+  --ink: #111111;
+  --ink-soft: #444444;
+  --rule: 0.7pt;
+}
+
+.cv-page {
+  display: flex;
+  flex-direction: column;
+  width: 8.5in;
+  max-width: 100%;
+  min-height: 11in;
+  margin: 0 auto;
+  padding: var(--pad-y) var(--pad-x);
+  background: #fff;
+  color: var(--ink);
+  /* reportlab base-14 Helvetica */
+  font-family: Helvetica, Arial, 'Liberation Sans', sans-serif;
+  font-size: 9.2pt;
+  line-height: 11.9pt;
+  -webkit-font-smoothing: auto;
+}
+
+/* --- name / title ------------------------------------------------------- */
+.cv-name {
+  font-size: 19pt;
+  line-height: 22pt;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 3pt;
+}
+
+.cv-subtitle {
+  font-size: 10.5pt;
+  line-height: 13pt;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin: 0 0 3pt;
+}
+
+/* --- contact ------------------------------------------------------------ */
+/* 9pt = h1 spaceBefore; reportlab uses max(spaceAfter, spaceBefore) */
+.cv-contact {
+  margin: 0 0 9pt;
+}
+
+.cv-contact-line {
+  font-size: 9.2pt;
+  line-height: 12.5pt;
+  color: var(--ink);
+}
+
+.cv-contact-line a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-contact-sep {
+  white-space: pre;
+}
+
+/* --- section headings (rule under the text, like the PDF's HRFlowable) --- */
+.cv-section-title {
+  font-size: 10.6pt;
+  line-height: 13pt;
+  font-weight: 700;
+  color: var(--ink);
+  /* the 9pt gap before a heading is supplied by the block above it */
+  margin: 0;
+  padding-bottom: 3pt;
+  border-bottom: var(--rule) solid var(--ink);
+  letter-spacing: 0;
+}
+
+/* 4pt = the HRFlowable's spaceAfter; 6pt + the body's trailing 3pt = the next
+   heading's 9pt spaceBefore (reportlab max(), not a sum) */
+.cv-section-body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4pt;
+  margin-bottom: 6pt;
+}
+
+/* --- summary ------------------------------------------------------------ */
+.cv-summary p {
+  font-size: 9.2pt;
+  line-height: 11.9pt;
+  margin: 0 0 3pt;
+}
+
+/* --- skills ------------------------------------------------------------- */
+.cv-skill-row {
+  font-size: 9.2pt;
+  line-height: 11.9pt;
+  margin: 0 0 3pt;
+}
+
+.cv-skill-label {
+  font-weight: 700;
+}
+
+/* --- experience --------------------------------------------------------- */
+.cv-role-title,
+.cv-project-name {
+  font-size: 10.2pt;
+  line-height: 12.6pt;
+  font-weight: 700;
+  margin: 5pt 0 1pt;
+}
+
+.cv-role-period {
+  font-size: 9.2pt;
+  line-height: 11.6pt;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0 0 2pt;
+}
+
+/* --- bullets (bulletIndent 1pt, leftIndent 12pt, bullet = U+2022) -------- */
+.cv-list {
+  list-style: none;
+  margin: 0 0 3.4pt;
+  padding: 0;
+}
+
+.cv-list li {
+  font-size: 9.2pt;
+  line-height: 11.7pt;
+  margin: 0 0 1.4pt;
+  padding-left: 12pt;
+  position: relative;
+}
+
+.cv-list li:last-child {
+  margin-bottom: 0;
+}
+
+.cv-list li::before {
+  content: '\2022';
+  position: absolute;
+  left: 1pt;
+  top: 0;
+}
+
+/* ===== Page chrome (not part of the CV) ===== */
 .cv-actions {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 24px;
+  width: var(--page-w);
+  max-width: 100%;
+  margin: 0 auto 24px;
 }
 
 .cv-btn {
-  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -18,7 +173,7 @@
   border-radius: 10px;
   background: #fff;
   cursor: pointer;
-  font-family: 'Nunito', Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: #344054;
@@ -47,7 +202,6 @@
   outline-offset: 2px;
 }
 
-/* Primary button variant */
 .cv-btn--primary {
   background: #3c78d8;
   border-color: #3c78d8;
@@ -58,14 +212,12 @@
 .cv-btn--primary:hover {
   background: #3569c4;
   border-color: #3569c4;
-  color: #fff;
   box-shadow: 0 4px 8px rgba(60, 120, 216, 0.3), 0 1px 3px rgba(60, 120, 216, 0.15);
 }
 
 .cv-btn--primary:active {
   background: #2e5eb0;
   border-color: #2e5eb0;
-  box-shadow: 0 1px 2px rgba(60, 120, 216, 0.3);
 }
 
 .cv-btn-icon {
@@ -83,6 +235,16 @@
   gap: 4px;
 }
 
+@media (max-width: 600px) {
+  .cv-page {
+    padding: 0.55in 0.4in;
+  }
+
+  .cv-actions {
+    width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
   .cv-actions {
     flex-direction: column;
@@ -97,140 +259,28 @@
   }
 }
 
-/* --- Header --- */
-.cv-name {
-  font-size: 27px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 4px;
+/* ===== Print: Letter page, same margins as the PDF ===== */
+@page {
+  size: letter;
+  margin: 0;
 }
 
-.cv-subtitle {
-  font-size: 14px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-/* --- Contact --- */
-.cv-contact {
-  font-size: 14px;
-  margin-bottom: 18px;
-}
-
-.cv-contact-row {
-  display: flex;
-  gap: 4px;
-  line-height: 1.8;
-}
-
-.cv-contact-label {
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.cv-contact a {
-  color: #1155cc;
-  text-decoration: underline;
-}
-
-/* --- Section Titles --- */
-.cv-section-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: #3c78d8;
-  margin: 22px 0 10px;
-  letter-spacing: 0.5px;
-}
-
-/* --- Section Body --- */
-.cv-section-body {
-  margin-bottom: 6px;
-}
-
-.cv-section-body p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 6px;
-}
-
-/* --- Skills --- */
-.cv-skill-row {
-  display: flex;
-  gap: 4px;
-  line-height: 1.8;
-}
-
-.cv-skill-label {
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.cv-skill-value {
-  font-weight: 400;
-}
-
-/* --- Experience --- */
-.cv-exp-header {
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 12px;
-  margin-bottom: 3px;
-}
-
-.cv-exp-date {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-/* --- Lists --- */
-.cv-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 8px;
-}
-
-.cv-list li {
-  font-size: 14px;
-  line-height: 1.6;
-  padding-left: 24px;
-  position: relative;
-  margin-bottom: 2px;
-}
-
-.cv-list li::before {
-  content: '●';
-  position: absolute;
-  left: 8px;
-  font-size: 12px;
-}
-
-/* --- Projects --- */
-.cv-proj-header {
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 10px;
-  margin-bottom: 3px;
-}
-
-.cv-proj-sub {
-  font-size: 14px;
-  font-weight: 400;
-  color: #555;
-  margin-bottom: 3px;
-}
-
-/* --- Divider --- */
-.cv-divider {
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 16px 0;
-}
-
-/* --- Print Styles --- */
 @media print {
   .no-print {
     display: none !important;
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    background: #fff;
+  }
+
+  .cv-page {
+    width: 8.5in;
+    min-height: 0;
+    margin: 0;
+    padding: 45.6pt 56.4pt;
   }
 }
